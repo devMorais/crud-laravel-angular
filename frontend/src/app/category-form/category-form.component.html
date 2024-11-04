@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a [routerLink]="['/list-category']" class="btn"
+                                style="background-color: #4643d3; color: white;">
+                                <i class="fas fa-chevron-left"></i> Voltar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label for="category">Categoria</label>
+                                    <input type="text" class="form-control" formControlName="category" id="category">
+                                </div>
+                                <small class="text-danger"
+                                    *ngIf="categoryForm.get('category')?.invalid && categoryForm.get('category')?.touched">
+                                    Descreva a categoria de forma breve, como
+                                    'Aluguel' ou 'Pagamento'.
+                                </small>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <button type="submit" [disabled]="categoryForm.invalid" class="btn btn-dark">
+                                    <i class="fas fa-save"></i> Cadastrar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

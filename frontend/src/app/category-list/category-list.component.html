@@ -1,0 +1,65 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-12">
+            <h3 class="mb-4 text-center">Lista das Categorias</h3>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a [routerLink]="['/']" class="btn" style="background-color: #4643d3; color: white;">
+                                <i class="fas fa-list"></i> Transações
+                            </a>
+                        </div>
+                        <div class="col-md-2 ms-auto"> <!-- ms-auto move o botão para a direita -->
+                            <a [routerLink]="['/create-category']" class="btn"
+                                style="background-color: #4643d3; color: white;">
+                                <i class="fas fa-plus"></i> Categoria
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="errorMessage" class="alert alert-danger">
+                        {{ errorMessage }}
+                    </div>
+                    <table class="table table-striped table-hover table-bordered align-middle">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col" style="text-align: center;">Categorias</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="categories.length; else noCategories">
+                            <tr *ngFor="let category of categories.slice().reverse()">
+                                <th scope="row" style="width: 10%;">{{ category.id }}</th>
+                                <td style="width: 70%; text-align: center;">{{ category.category }}</td>
+                                <td style="width: 10%;">
+                                    <a [routerLink]="['/edit-category', category.id]" style="color: #2c2c2c;"
+                                        class="ms-1 me-1">
+                                        <i class="far fa-edit"></i>
+                                    </a>
+                                    <a (click)="deleteCategory(category.id); $event.preventDefault()"
+                                        href="javascript:void(0);" style="color: #2c2c2c;" class="ms-1 me-1">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Mensagem exibida quando não há transações -->
+<ng-template #noCategories>
+    <tr>
+        <td colspan="7" class="text-center" style="padding: 20px;">
+            <span style="color: #007bff; font-weight: 500; font-size: 16px;">
+                Sem categorias cadastradas no momento.
+            </span>
+        </td>
+    </tr>
+</ng-template>
